@@ -79,7 +79,18 @@ int main (int argc, char **argv) {
 
   osg::ref_ptr<osg::Group> root = new osg::Group;
   root->addChild(geode.get());
+
+
+
   osgViewer::Viewer viewer;
+  osg::ref_ptr< osg::Light > light = new osg::Light;
+  light->setAmbient(osg::Vec4(1.0f,1.0f,1.0f,1.0f));
+  viewer.setLight(light);
+  osg::Camera * camera = viewer.getCamera();
+  camera->setClearColor(osg::Vec4(0.094f, 0.247f, 0.539f, 0.1f));
+
+
+
   viewer.setSceneData(root.get());
   viewer.setCameraManipulator(new osgGA::TerrainManipulator());
   return viewer.run();
